@@ -1,0 +1,10 @@
+<extend name='Admin@Public:index' />
+<block name='content'>
+    <wx:table 
+        list='list'
+        check="false"
+        sort='false'
+        class='table table-striped table-bordered table-hover table-center'
+        show='title:活动名称,one:连续签到1天,two:连续签到2天,three:连续签到3天,four:连续签到4天及以上,need:补签所需积分,month:累计签到月积分,create_date:创建时间'
+        action="game_type|luckdraw_detail,id|sign_detail,id|show_load_button:编辑#Integral/Sign/edit,id|show_status_button#Integral/Sign/forbid" />
+</block>

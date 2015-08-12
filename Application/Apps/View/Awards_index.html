@@ -1,0 +1,45 @@
+<extend name='Admin@Public:index' />
+<block name="search">
+    <if condition="auth('AppsAwards/add')">
+        <button data-modal="{:U('AppsAwards/add')}" class="btn btn-success btn-sm mr5">添加奖品</button>
+        <a href="javascript:void(0)" onclick="go()" class="btn btn-sm btn-success">批量删除记录</a>
+    </if>
+<!--    <if condition="auth('AppsAwards/exoutput')">
+        <a target="_blank" href="{:U('AppsAwards/exoutput')}" class="btn btn-success btn-sm mr5">导出Excel</a>
+    </if>-->
+</block>
+<block name='content'>
+    <wx:table
+        list='list'
+        order='false'
+        color="status|show_color"
+        class='table table-striped table-bordered table-hover table-center' 
+        show='name:奖品名称,cate:奖品类型,img|show_img_link:图片,price:价格,code:奖品编号,jifen:积分数值,nums:库存数量,unset_date:兑换有效期,status|show_status_text:状态'
+        action="id|show_load_button:编辑#AppsAwards/edit,id|show_status_button#AppsAwards/forbid,id|show_del_button:删除#AppsAwards/del" />
+</block>
+<block name="script">
+    <script>
+        function go() {
+            var ids = new Array();
+            var i = 0;
+            $("input[type=checkbox]").each(function () {
+                if ($(this).is(":checked")) {
+                    if ($(this).val() && $(this).val() != "on") {
+                        ids[i++] = $(this).val();
+                    }
+                }
+            });
+            if (ids[0]) {
+                $.msg.loading();
+                if (!confirm('确认要将选中的记录删除吗？')) {
+                    $.msg.close();
+                    return;
+                }
+                $.msg.close();
+                $.msg.load('{:U("AppsAwards/del")}', {id: ids}, "POST");
+            } else {
+                $.msg.show("请选择需要操作的数据！", false, 2, 'info');
+            }
+        }
+    </script>
+</block>

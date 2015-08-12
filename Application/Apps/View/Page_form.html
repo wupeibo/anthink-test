@@ -1,0 +1,184 @@
+<extend name='Admin@Public:form' />
+
+<block name="content">
+    <div class="form-group">
+        <label class="col-sm-2 control-label tr">分享主题 <b class="required">*</b></label>
+        <div class="col-sm-9">
+            <input required="" value="{$vo.title}" maxlength="30" pattern="^.{2,15}$" title="活动主题请输入2-15个字符" type="text" name="title" class="form-control" placeholder="请输入主题">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label tr">页面简介 <b class="required">*</b></label>
+        <div class="col-sm-9">
+            <input required="" value="{$vo.desc}" maxlength="50" type="text" name="desc" class="form-control" placeholder="请输入页面简介">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="menu_code" class="col-sm-2 control-label">节点代码</label>
+        <div class="col-sm-9" id='menu_code_select'>
+            <input class='form-control' readonly="readonly" id='menu_code' name='linkcode' value='{$vo.linkcode}'/>
+            <input class='form-control' readonly="readonly" id='page' name='page' value='{$vo.page}'  style="width:50%;"/>
+            <p class="help-block">可以通过下面的选择器设置</p>
+            <div style="white-space:nowrap">选择器：</div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="menu_url" class="col-sm-2 control-label">分享链接 <b class="required">*</b></label>
+        <div class="col-sm-9">
+            <input type="text" value="{$vo.link|default='#'}" maxlength="256" required="" name="link" class="form-control" id="menu_url" placeholder="请输入分享链接">
+            <p class="help-block">
+                <a href='javascript:void(0)' onclick='$(this).parent("p").prev("input").val("http://baby.akarola.com/index.php/" + ($("#menu_code").val() || "wap/member/index"))'>复制节点代码</a>
+                <span >填写格式：http://baby.akarola.com/index.php/wap/控制器/方法</span>
+            </p>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label tr">分享图标 <b class="required">*</b></label>
+        <div class="col-sm-9">
+            <input type='hidden' name="img" value="{$vo.img}" />
+            <img alt="" class="upload_one_img thumbnail" data-name="img" src="{:to_domain($vo['img'])}">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label tr">分享可得积分 <b class="required">*</b></label>
+        <div class="col-sm-9">
+            <input required="" value="{$vo.jifen|default=0}" maxlength="5" onkeyup="this.value = this.value.replace(/[^\d|.]/g, '')" pattern="^[.0-9]{0,5}$" title="所需积分请输入少于5位数字"  type="text" name="jifen" class="form-control" placeholder="请输入积分数值">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label tr">标识码 <b class="required">*</b></label>
+        <div class="col-sm-9">
+            <input required="" value="{$vo.code}" maxlength="8" type="text" name="code" pattern="[0-9A-z]" class="form-control" placeholder="请输入标识码">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label tr">积分次数 <b class="required">*</b></label>
+        <div class="col-sm-9">
+            <input required="" value="{$vo.twice|default=1}" maxlength="2" onkeyup="this.value = this.value.replace(/[^\d|.]/g, '')" pattern="^[.0-9]{0,2}$" title="请输入0-99的数"  type="text" name="twice" class="form-control" placeholder="同一个标识码可以重复获取积分的次数">
+            <span class="f12 red">同一个标识码可以重复获取积分的次数</span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label tr">备注 <b class="required">*</b></label>
+        <div class="col-sm-9">
+            <input required="" value="{$vo.mark}" maxlength="50" type="text" name="mark" class="form-control" placeholder="请输入备注">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label tr">活动状态 </label>
+        <div class="col-sm-9">
+            <div class="form-control">
+                <label><input value="2" type="radio" name="status" class="ace" <neq name="vo.status" value="1">checked</neq>><span class="lbl">启用</span></label>
+                <label><input value="1" type="radio" name="status" class="ace" <eq name="vo.status" value="1">checked</eq>><span class="lbl">禁用</span></label>
+            </div>
+        </div>
+    </div>
+    <notempty name="vo">
+        <input type="hidden" value="{$vo.id|default=0}" name="id"/>
+    </notempty>
+</block>
+<block name="style">
+    <style>
+        .h120{height: 120px!important;}
+    </style>
+</block>
+<block name='script'>
+    <script>
+        $(function () {
+            function createSelect(data, selectValue, type) {
+                var sm = document.createElement('select');
+                var om = document.createElement('option');
+                om.value = '';
+                om.innerHTML = '请选择节点';
+                sm.appendChild(om);
+                for (var i in data) {
+                    var om = document.createElement('option');
+                    var value = i;
+                    var title = i;
+                    var tmp = data[i];
+                    if (typeof (data[i]) === 'string') {
+                        value = data[i];
+                    }
+                    switch (type) {
+                        case 'm':
+                            for (var _a in data[i]) {
+                                for (var _b in data[i][_a]) {
+                                    if (data[i][_a][_b]['gtitle']) {
+                                        title = data[i][_a][_b]['gtitle'];
+                                        break;
+                                    }
+                                }
+                            }
+                            break;
+                        case 'c':
+                            for (var _a in data[i]) {
+                                if (data[i][_a]['ptitle']) {
+                                    title = data[i][_a]['ptitle'];
+                                    break;
+                                }
+                            }
+                            break;
+                        case 'a':
+                            if (data[i]['title']) {
+                                title = data[i]['title'];
+                            }
+                    }
+
+                    if (selectValue === value) {
+                        om.selected = 'selected';
+                    }
+                    om.value = value;
+                    om.innerHTML = title;
+                    sm.appendChild(om);
+                }
+                return sm;
+            }
+
+            $.get('{:url_filter()}', {action: 'getNodeTree'}, function (data) {
+                var d = $('#menu_code').val().split('/');
+                var m = createSelect(data, d[0] || false, 'm');
+                $('#menu_code_select div').append($(m));
+                $(m).on('change', function () {
+                    var mdata = $(this).val();
+                    $('#menu_code').val(mdata);
+                    $(this).nextAll('select').remove();
+                    if (!mdata) {
+                        return;
+                    }
+                    var c = createSelect(data[mdata], d[1] || false, 'c');
+                    $(this).after($(c));
+                    $(c).on('change', function () {
+                        $(this).next('select').remove();
+                        var cdata = $(this).val();
+                        $('#menu_code').val(mdata + '/' + cdata);
+                        if (!cdata) {
+                            $('#menu_code').val(mdata);
+                            return;
+                        }
+                        var a = createSelect(data[mdata][cdata], d[2] || false, 'a');
+                        $(this).after($(a));
+                        $(a).on('change', function () {
+                            var adata = $(this).val();
+                            $('#menu_code').val(mdata + '/' + cdata + '/' + adata);
+                            var page = cdata + '-' + adata;
+                            page = page.toLowerCase();
+                            $("#page").val(page);
+                            if (!adata) {
+                                $('#menu_code').val(mdata + '/' + cdata);
+                            }
+                        }).trigger('change');
+                    }).trigger('change');
+                }).trigger('change');
+            });
+        });
+    </script>
+</block>

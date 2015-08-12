@@ -1,0 +1,46 @@
+<extend name="Wap@Public:index" />
+
+<block name="body">
+    <div class="container padding-top-20">
+        <div class="padding-30 text-center">
+            <img src="__RES__/wap/images/error.png" class="center-block width-120" alt="" />
+            <p class="main-color font-24 bold line-height-48">{$title}<i class="">！</i></p>
+            <p class="text-999 padding-20 padding-top-0">{$info}</p>
+        </div>
+    </div>
+</block>
+
+<block name='script'>
+    {:W('Wap/Wechat/jsHideMenu')}
+    <script>
+        wx.ready(function () {
+            var shareData = {
+                title: '{$share.title}',
+                desc: '{$share.desc}',
+                link: "{$share.link}",
+                imgUrl: '{$share.img}',
+                trigger: function (res) {
+//                    alert('用户点击发送给朋友');
+                },
+                success: function (res) {
+                    var data = {
+                        "page": '{$share.page}'
+                    };
+                    $.post("{:U('Wap/Share/doShare')}", data, function (data) {
+                        alert(data.info);
+                    }, "JSON");
+                },
+                cancel: function (res) {
+                    alert('取消分享');
+                },
+                fail: function (res) {
+                    alert(JSON.stringify(res));
+                }
+            };
+            wx.onMenuShareAppMessage(shareData);
+            wx.onMenuShareTimeline(shareData);
+            wx.onMenuShareQQ(shareData);
+            wx.onMenuShareWeibo(shareData);
+        });
+    </script>
+</block>

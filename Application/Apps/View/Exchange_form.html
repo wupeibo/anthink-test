@@ -1,0 +1,23 @@
+<extend name='Admin@Public:form' />
+
+<block name="content">
+    <div class="form-group">
+        <label class="col-sm-2 control-label tr">客户留言</label>
+        <div class="col-sm-9">{$vo.message}</div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label tr">留言时间</label>
+        <div class="col-sm-9">{$vo.create_date}</div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label tr">回复内容</label>
+        <div class="col-sm-9">
+            <textarea class="form-control" name="reply">{$vo.reply}</textarea>
+        </div>
+    </div>
+
+    <notempty name="vo">
+        <input type="hidden" value="{$vo.id|default=0}" name="id"/>
+    </notempty>
+</block>

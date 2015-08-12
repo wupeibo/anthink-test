@@ -1,0 +1,30 @@
+<extend name='Admin@Public:index' />
+
+<block name="search">
+    <if condition="auth('AppsPage/add')">
+        <button data-modal="{:U('AppsPage/add')}" class="btn btn-success btn-sm mr5">添加页面</button>
+    </if>
+</block>
+
+<block name='content'>
+    <wx:table
+        list='list'
+        check="false"
+        color="status|show_color"
+        class='table table-striped table-bordered table-hover table-center'
+        show='page|show_page_name:分享页面,title:活动主题,desc:简介,link:连接,img|show_img_link:图标,jifen:可得积分,mark:备注,count:分享次数,code:标识码'
+        action="page|share_detail,id|show_load_button:编辑#AppsPage/edit,page:reset:清除记录,id|show_status_button#AppsPage/forbid" />
+</block>
+<block name="script">
+    <script>
+        function reset(page) {    //id:reset:重置,
+            if (window.confirm('你确定要清除分享数据吗？')) {
+                $.get("{:U('AppsPage/clean_recond')}", {"page": page}, function (data) {
+                    $.msg.auto(data);
+                }, 'JSON');
+            } else {
+                return false;
+            }
+        }
+    </script>
+</block>

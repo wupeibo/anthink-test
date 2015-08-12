@@ -1,0 +1,15 @@
+<extend name='Wap@Public:index' />
+
+<block name='body'>
+    <form class='padding-20' method='POST' data-ajax='true' action="__SELF__">
+        <div class="alert alert-danger" role="alert"><i class='glyphicon glyphicon-info-sign'></i> 该店铺开启了审核功能，您提交的申请还需等待店铺管理员审核。 </div>
+        <input type='hidden' value='{$member.id}' name='id' />
+        <input type="text" value="{$member.name}" required="" title='请输入姓名' name='name' placeholder="真实姓名" class="form-control margin-top-20 border-bottom-eee"/>
+        <input type="number" value="{$member.phone}" required="" pattern="mobi" name='phone' title='请输入正确的手机号码' placeholder="联系手机" class="form-control margin-top-20 border-bottom-eee"/>
+        <button class="btn btn-main btn-block margin-top-20 margin-bottom-20">提交申请</button>
+    </form>
+</block>
+
+<block name='script'>
+    {:W('Wap/Wechat/jsHideMenu')}
+</block>

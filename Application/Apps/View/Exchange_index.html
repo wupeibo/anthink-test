@@ -1,0 +1,41 @@
+<extend name='Admin@Public:index' />
+<block name="search">
+    <if condition="auth('Member/Message/add')">
+        <a href="javascript:void(0)" onclick="go()" class="btn btn-sm btn-success">批量删除记录</a>
+    </if>
+</block>
+
+<block name='content'>
+    <wx:table
+        list='list'
+        color="status|show_color"
+        class='table table-striped table-bordered table-hover table-center'
+        show='real_name:会员姓名,phone:手机号,type:留言类型,create_date:留言时间,status|show_status_text:回复状态,update_date:回复时间'
+        action="id|show_load_button:回复#Member/Message/edit,id|show_del_button:删除#Member/Message/del" />
+</block>
+<block name="script">
+    <script>
+        function go() {
+            var ids = new Array();
+            var i = 0;
+            $("input[type=checkbox]").each(function () {
+                if ($(this).is(":checked")) {
+                    if ($(this).val() && $(this).val() != "on") {
+                        ids[i++] = $(this).val();
+                    }
+                }
+            });
+            if (ids[0]) {
+                $.msg.loading();
+                if (!confirm('确认要将选中的记录删除吗？')) {
+                    $.msg.close();
+                    return;
+                }
+                $.msg.close();
+                $.msg.load('{:U("AppsAwards/del")}', {id: ids}, "POST");
+            } else {
+                $.msg.show("请选择需要操作的数据！", false, 2, 'info');
+            }
+        }
+    </script>
+</block>

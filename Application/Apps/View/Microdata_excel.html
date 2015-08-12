@@ -1,0 +1,50 @@
+<div class="fade in modal-lg modal-dialog">
+    <div class="modal-body">
+        <div class="panel-body form-horizontal">
+            <form action="{:U('AppsMicrodata/excel')}" data-ajax="true" method="post">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label tr">伪数据 <b class="required">*</b></label>
+                    <div class="col-sm-9">
+                        <select name="game_type" class="form-control ui-select2" title="请选择抽奖活动类型" required>
+                            <volist name="catelist" id="list">
+                                <option value="{$list.game_type}" >{$list.title}</option>
+                            </volist>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label tr">选择Excel <b class="required">*</b></label>
+                    <div class="col-sm-9">
+                        <button data-name="link" class="col-sm-2 upload-thumbnail thumbnail upload_one_file btn btn-success btn-sm mr10" style='border-width:4px'> <i class="glyphicon glyphicon-plus-sign"></i> 选择文件</button>
+                        <input type='text' class="col-sm-9 mt30" name="link" id="link" value="" readonly required/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label tr">数据格式 </label>
+                    <div class="col-sm-9">
+                        <table class="table table-striped table-bordered table-hover table-center tc">
+                            <thead>
+                                <tr class="bg-primary"><th>用户名</th><th>手机</th><th>已中奖项</th><th>奖品名称</th><th>中奖时间</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>肖铭</td><td>18300000000</td><td>2</td><td>苹果手机</td><td>2015-12-31</td></tr>
+                                <tr><td>肖铭</td><td>18300000000</td><td>3</td><td>牛奶一箱</td><td>2015-12-31</td></tr>
+                                <tr><td>肖铭</td><td>18300000000</td><td>1</td><td>荷兰3日游</td><td>2015-12-31</td></tr>
+                                <tr><td>肖铭</td><td>18300000000</td><td>4</td><td>宝宝推车</td><td>2015-12-31</td></tr>
+                                <tr><td>肖铭</td><td>18300000000</td><td>5</td><td>牛奶一箱</td><td>2015-12-31</td></tr>
+                                <tr><td>肖铭</td><td>18300000000</td><td>6</td><td>牛奶一盒</td><td>2015-12-31</td></tr>
+                                <tr><td>...</td><td></td><td></td><td></td><td></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer tc">
+                    <a data-close class='btn btn-warning btn-sm mr20' href='javascript:void(0);'>取消</a>
+                    <input type="submit" class="btn btn-success btn-sm mr10" value="保存" />
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+</div>

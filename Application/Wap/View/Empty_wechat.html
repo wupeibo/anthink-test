@@ -1,0 +1,31 @@
+<extend name="Wap@Public:index" />
+
+<block name="body">
+    <div class="container padding-top-20">
+        <div class="padding-30 text-center">
+            <img src="{$config.qrc_img|to_domain}" class="center-block img-responsive" alt="" />
+            <p class="main-color font-18 bold line-height-48">关注后可获得更多功能..</p>
+            <p class="text-999 padding-20 padding-top-0 text-left">
+                一、用手指长按上面的二维码<br/>
+                二、选择《识别图中二维码》<br/>
+                三、关注《{$config.title}》
+            </p>
+        </div>
+    </div>
+</block>
+
+
+<block name='script'>
+    {:W('Wechat/JsSign')}
+    <script>
+        wx.ready(function () {
+            wx.hideAllNonBaseMenuItem();
+            wx.showMenuItems({
+                menuList: [
+                    'menuItem:profile',
+                    'menuItem:addContact'
+                ]
+            });
+        });
+    </script>
+</block>

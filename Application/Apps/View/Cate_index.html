@@ -1,0 +1,11 @@
+<extend name='Admin@Public:index' />
+
+<block name='content'>
+    <wx:table
+        list='list'
+        order='false'
+        color="status|show_color"
+        class='table table-striped table-bordered table-hover table-center' 
+        show='name:类型名称,status|show_status_text:状态'
+        action="id|show_load_button:编辑#AppsCate/edit,id|show_status_button#AppsCate/forbid" />
+</block>
