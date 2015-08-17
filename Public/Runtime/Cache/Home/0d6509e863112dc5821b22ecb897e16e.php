@@ -4,8 +4,6 @@
         <meta charset="utf-8">
         <title><?php echo ($ptitle); ?> <?php if(!empty($site["title"])): ?>- <?php echo ($site["title"]); endif; ?></title>
         <meta name="viewport" content="width=device-width,height=device-height,maximum-scale=1.0,user-scalable=no">
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
         <meta name="format-detection" content="telephone=no">
         <link href="http://localhost/anthink-test/Public/Plugins/icheck/skins/flat/grey.css" rel="stylesheet" type="text/css"/>
         <link href="http://localhost/anthink-test/Public/Plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
@@ -16,7 +14,6 @@
           <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
           <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
-        <script src="http://localhost/anthink-test/Public/Resource/js/newdiv.js" type="text/javascript"></script>
         <!--魔法效果-->
         <link href="http://localhost/anthink-test/Public/Plugins/magic-effect/css/normalize.css" rel="stylesheet">
         <link href="http://localhost/anthink-test/Public/Plugins/magic-effect/css/style.css" rel="stylesheet">
@@ -34,7 +31,7 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">快速登录 <span class="caret"></span></a>
                             <ul class="dropdown-menu text-center" role="menu">
                                 <li class="text-center">
-                                    先关注我<b style="color: red;">❤</b><br/>
+                                    先关注我<b style="color: red;">♥</b><br/>
                                     <img width="100" src="http://anthink-atuser.stor.sinaapp.com/qrcode.png"/>
                                 </li>
                                 <li class="divider"></li>
@@ -61,13 +58,18 @@
         </div><!-- /.container-fluid -->
     </nav>
 
+    <div class="container">
+        <button class="btn btn-default" data-anbox data-type="login" data-mask="false" data-title="特殊的疯狂">弹出层1-1</button>
+        <button class="btn btn-default" data-anbox data-type="login" data-mask="true" data-title="特殊的疯狂">弹出层1-2</button>
+        <button class="btn btn-default" onclick="javascript: $.anbox.alert('特殊的疯狂', 3, false, 'http://www.baidu.com');">弹出层2-1</button>
+        <button class="btn btn-default" onclick="javascript: $.anbox.alert('特殊的疯狂', 3, true, 'http://www.baidu.com');">弹出层2-2</button>
+    </div>
 
 <div class="hidden">
     <script src="http://localhost/anthink-test/Public/Plugins/json/json2.js" type="text/javascript"></script>
     <script src="http://localhost/anthink-test/Public/Plugins/jquery/jquery-1.11.1.min.js" type="text/javascript"></script>
     <script src="http://localhost/anthink-test/Public/Plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="http://localhost/anthink-test/Public/Plugins/jquery/jquery.validate.js" type="text/javascript"></script>
-    <script src="http://localhost/anthink-test/Public/Plugins/layui/layer.m/layer.m.js" type="text/javascript"></script>
     <script src="http://localhost/anthink-test/Public/Resource/js/common.js" type="text/javascript"></script>
     <script src="http://localhost/anthink-test/Public/Plugins/icheck/icheck.min.js" type="text/javascript"></script>
     <!--魔法效果-->
@@ -75,6 +77,9 @@
     <script src="http://localhost/anthink-test/Public/Plugins/magic-effect/js/modernizr.js"></script>
     <script src='http://localhost/anthink-test/Public/Plugins/magic-effect/js/rbeix.js'></script>
     <script src="http://localhost/anthink-test/Public/Plugins/magic-effect/js/index.js"></script>
+    <!--自己的js插件-->
+    <script src="http://localhost/anthink-test/Public/Resource/js/newdiv.js" type="text/javascript"></script>
+    <script src="http://localhost/anthink-test/Public/Resource/js/anbox.js"></script>
     
     <?php if(!empty($baidu_tongji_src)): ?><img style='width: 1px;height:1px;overflow:hidden' src='<?php echo ($baidu_tongji_src); ?>' alt /><?php endif; ?>
     <script type="text/javascript">

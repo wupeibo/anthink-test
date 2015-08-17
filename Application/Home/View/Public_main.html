@@ -4,8 +4,6 @@
         <meta charset="utf-8">
         <title>{$ptitle} <notempty name='site.title'>- {$site.title}</notempty></title>
         <meta name="viewport" content="width=device-width,height=device-height,maximum-scale=1.0,user-scalable=no">
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
         <meta name="format-detection" content="telephone=no">
         <link href="__LIB__/icheck/skins/flat/grey.css" rel="stylesheet" type="text/css"/>
         <link href="__LIB__/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
@@ -16,7 +14,6 @@
           <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
           <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
-        <script src="__RES__/js/newdiv.js" type="text/javascript"></script>
         <!--魔法效果-->
         <link href="__LIB__/magic-effect/css/normalize.css" rel="stylesheet">
         <link href="__LIB__/magic-effect/css/style.css" rel="stylesheet">
@@ -35,7 +32,7 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">快速登录 <span class="caret"></span></a>
                             <ul class="dropdown-menu text-center" role="menu">
                                 <li class="text-center">
-                                    先关注我<b style="color: red;">❤</b><br/>
+                                    先关注我<b style="color: red;">♥</b><br/>
                                     <img width="100" src="http://anthink-atuser.stor.sinaapp.com/qrcode.png"/>
                                 </li>
                                 <li class="divider"></li>
@@ -68,7 +65,6 @@
     <script src="__LIB__/jquery/jquery-1.11.1.min.js" type="text/javascript"></script>
     <script src="__LIB__/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="__LIB__/jquery/jquery.validate.js" type="text/javascript"></script>
-    <script src="__LIB__/layui/layer.m/layer.m.js" type="text/javascript"></script>
     <script src="__RES__/js/common.js" type="text/javascript"></script>
     <script src="__LIB__/icheck/icheck.min.js" type="text/javascript"></script>
     <!--魔法效果-->
@@ -76,6 +72,9 @@
     <script src="__LIB__/magic-effect/js/modernizr.js"></script>
     <script src='__LIB__/magic-effect/js/rbeix.js'></script>
     <script src="__LIB__/magic-effect/js/index.js"></script>
+    <!--自己的js插件-->
+    <script src="__RES__/js/newdiv.js" type="text/javascript"></script>
+    <script src="__RES__/js/anbox.js"></script>
     <block name="script"></block>
     <notempty name='baidu_tongji_src'>
         <img style='width: 1px;height:1px;overflow:hidden' src='{$baidu_tongji_src}' alt />

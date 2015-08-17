@@ -22,7 +22,7 @@ function qrcodeDiv(_id, title, src, msg) {
     newDiv.style.padding = "5px";
     newDiv.innerHTML = "<strong style='font-size:24px; padding:0 0 0 10px;color:#3A5FCD;'>" + title + "</strong>";    //标题
     document.body.appendChild(newDiv);
-    // mask图层 
+    // mask图层遮罩
     var newMask = document.createElement("div");
     newMask.id = m;
     newMask.style.position = "absolute";

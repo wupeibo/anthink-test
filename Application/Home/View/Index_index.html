@@ -1,3 +1,9 @@
 <extend name="Public:main" />
 <block name="body">
+    <div class="container">
+        <button class="btn btn-default" data-anbox data-type="login" data-mask="false" data-title="特殊的疯狂">弹出层1-1</button>
+        <button class="btn btn-default" data-anbox data-type="login" data-mask="true" data-title="特殊的疯狂">弹出层1-2</button>
+        <button class="btn btn-default" onclick="javascript: $.anbox.alert('特殊的疯狂', 3, false, 'http://www.baidu.com');">弹出层2-1</button>
+        <button class="btn btn-default" onclick="javascript: $.anbox.alert('特殊的疯狂', 3, true, 'http://www.baidu.com');">弹出层2-2</button>
+    </div>
 </block>
