@@ -94,7 +94,7 @@
                 setTimeout(function () {
                     self._clean(data.type);
                 }, 400);
-                self._mask(true);
+                data.mask === "true" && self._mask(true);
                 return false;
             }
             frame.appendChild(close);
